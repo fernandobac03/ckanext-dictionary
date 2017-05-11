@@ -22,16 +22,16 @@ Example:
 <ol class="stages {{ class }}">
   
   <li class="last {{ s3 }}" style="width:33.33%">
-    {% if s2 != 'complete' %}
+   <!-- {% if s2 != 'complete' %} -->
       <span class="highlight">{{ _('Add data dictionary') }}</span>
-    {% else %}
-      {% if s1 == 'active' %}
+<!--     {% else %} -->
+<!--       {% if s1 == 'active' %} -->
         {# stage 1 #}
         <button class="highlight" name="save" value="go-resources" type="submit">{{ _('Add data dictionary') }}</button>
-      {% else %}
-        {% link_for _('Add data dictionary'), controller='package', action='new', class_="highlight" %}
-      {% endif %}
-    {% endif %}
+ <!--      {% else %} -->
+  <!--       {% link_for _('Add data dictionary'), controller='package', action='new', class_="highlight" %} -->
+  <!--     {% endif %} -->
+ <!--    {% endif %} -->
   </li>
 <li class="first {{ s1 }}" style="width:33.33%">
     {% if s1 != 'complete' %}
