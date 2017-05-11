@@ -21,7 +21,7 @@ Example:
 -->
 <ol class="stages {{ class }}">
   
-  <li class="last {{ s3 }}" style="width:33.33%">
+  <li class="first {{ s3 }}" style="width:33.33%">
    <!-- {% if s2 != 'complete' %} -->
       <span class="highlight">{{ _('Add data dictionary') }}</span>
 <!--     {% else %} -->
@@ -33,7 +33,7 @@ Example:
   <!--     {% endif %} -->
  <!--    {% endif %} -->
   </li>
-<li class="first {{ s1 }}" style="width:33.33%">
+<li class="last {{ s1 }}" style="width:33.33%">
     {% if s1 != 'complete' %}
       <span class="highlight">{{ _('Create dataset') }}</span>
     {% else %}
