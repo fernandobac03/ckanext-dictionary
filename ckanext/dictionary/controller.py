@@ -23,6 +23,7 @@ import ckan.lib.uploader as uploader
 import ckan.plugins as p
 import ckan.lib.render
 
+
 #render = ckan.lib.base.render
 #from home import CACHE_PARAMETERS
 
@@ -30,7 +31,7 @@ log = logging.getLogger(__name__)
 
 render = base.render
 abort = base.abort
-redirect = base.redirect
+redirect = h.redirect_to
 
 
 NotFound = logic.NotFound
