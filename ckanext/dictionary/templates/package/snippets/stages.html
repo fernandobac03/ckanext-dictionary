@@ -20,7 +20,20 @@ Example:
 {% if s3 != 'uncomplete' %}{% set class = 'stage-3' %}{% endif %}
 
 <ol class="stages {{ class }}">
-  <li class="first {{ s1 }}" style="width:33.33%">
+  
+  <li class="last {{ s3 }}" style="width:33.33%">
+    {% if s2 != 'complete' %}
+      <span class="highlight">{{ _('Add data dictionary') }}</span>
+    {% else %}
+      {% if s1 == 'active' %}
+        {# stage 1 #}
+        <button class="highlight" name="save" value="go-resources" type="submit">{{ _('Add data dictionary') }}</button>
+      {% else %}
+        {% link_for _('Add data dictionary'), controller='package', action='new', class_="highlight" %}
+      {% endif %}
+    {% endif %}
+  </li>
+<li class="first {{ s1 }}" style="width:33.33%">
     {% if s1 != 'complete' %}
       <span class="highlight">{{ _('Create dataset') }}</span>
     {% else %}
@@ -39,18 +52,5 @@ Example:
       {% endif %}
     {% endif %}
   </li>
-  <li class="last {{ s3 }}" style="width:33.33%">
-    {% if s2 != 'complete' %}
-      <span class="highlight">{{ _('Add data dictionary') }}</span>
-    {% else %}
-      {% if s1 == 'active' %}
-        {# stage 1 #}
-        <button class="highlight" name="save" value="go-resources" type="submit">{{ _('Add data dictionary') }}</button>
-      {% else %}
-        {% link_for _('Add data dictionary'), controller='package', action='new', class_="highlight" %}
-      {% endif %}
-    {% endif %}
-  </li>
-  
 </ol>
 
