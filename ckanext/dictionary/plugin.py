@@ -43,6 +43,9 @@ class Data_DictionaryPlugin(p.SingletonPlugin):
         return map
 
     def after_map(self, map):
+	map.connect('add dataset', '/dataset/neww', action='new') 
+
+
         map.connect(' temp', '/demp/demo',
             controller='ckanext.dictionary.controller:DDController',
             action='index')
