@@ -247,8 +247,9 @@ class DDController(BaseController):
                     dict(data_dict, state='active'))
                 redirect(h.url_for(controller='package',
                                    action='read', id=id))
-            elif save_action == 'go-dataset':
-                redirect(h.url_for(controller="package", action="new_resource", id=id))
+            elif save_action == 'go-dataset-new': #cambio aqui
+                redirect(h.url_for(controller="package", action="new")) #cambio aqui
+
         #print("!!!!!!!!!!! the value of temp is",temp, id)
         print("!!!!!!!!!!!!")
         redirect(h.url_for(controller='package', action='read', id=id))
