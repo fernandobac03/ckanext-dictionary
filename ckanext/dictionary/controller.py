@@ -64,11 +64,11 @@ class DDController(BaseController):
         return lookup_package_plugin().resource_form()
 
 	
-    def finaldict(self, id, data=None, errors=None):
+    def finaldict(self, data=None, errors=None):
         if request.method== 'POST':
             print("!!!!!!!!!!!!!!!!!!1 POsted FROM EXTENSION!!!!!!!!!!!1")
             #print(request.params.get())
-        c.link = str("/dataset/dictionary/new_dict/"+id)
+        c.link = str("/dataset/dictionary/new_dict/"+"prueba")
 	return render("package/new_data_dict.html",extra_vars={'package_id':id})
     def edit_dictionary(self, id, data=None, errors=None):
         context = {'model': model, 'session': model.Session,
