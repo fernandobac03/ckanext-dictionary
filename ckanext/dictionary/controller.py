@@ -364,7 +364,7 @@ class DDController(BaseController):
                         #return self.new_resource(id, data, errors,
                                                  #error_summary)
                 print('save action was go-datadict in the exntenstion NEEWWWW!!!!!!!!!!!')
-                redirect(h.url_for(str("/dataset/dictionary/add/"+id)))
+                redirect(h.url_for(str("/dataset/dictionaryy/add/"+id)))
 		#redirect(h.url_for(controller='package', action='finaldict', id=id))
             elif save_action == 'go-dataset':
                 # go to first stage of add dataset
