@@ -37,7 +37,7 @@
     {% if data_dict[index] %}
     {% set current_data_dict = data_dict[index] %}
     {% else %}
-    {% set current_data_dict = {'field_name' :'', 'title':'','description' :'', 'sensitive': '','id':''} %}
+    {% set current_data_dict = {'Seleccionar esquema' :'', 'title':'','description' :'', 'sensitive': '','id':''} %}
     {%endif%}
     <div class="control-group control-custom" style="margin:1px;">
     <div class="row-fluid">
@@ -89,6 +89,11 @@
 </div>
 </p>
 
+<div>
+  {% block package_search_results_list %}
+        {{ h.snippet('snippets/package_list.html', packages=c.page.items) }}
+      {% endblock %}
+</div>
 
 	
     {% block data_dict_buttons %}
