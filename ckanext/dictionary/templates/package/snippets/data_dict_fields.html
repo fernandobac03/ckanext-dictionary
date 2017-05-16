@@ -9,7 +9,7 @@
   {% block stages %}
     {# An empty stages variable will not show the stages #}
     {% if not c.pkg %}
-      {{ h.snippet('package/snippets/stages.html', stages=['complete','complete','active'], pkg_name=pkg_name) }}
+      {{ h.snippet('package/snippets/stages.html', stages=['active','uncomplete','uncomplete'], pkg_name=pkg_name) }}
     {% endif %}
   {% endblock %}
 
