@@ -3,12 +3,14 @@
 {# this snippet is meant to be called from organization.html,
 not used as a form_snippet directly #}
 
+<!--esta linea estaba abajo de error=erros[field.field_name]
+    is_required=org_required,
+-->
 {% macro _organization() %}
   {% set existing_org = data.owner_org or data.group_id %}
   {% call form.input_block('field-organizations',
     label=h.scheming_language_text(field.label),
     error=errors[field.field_name],
-    #is_required=org_required,#
     extra_html=caller() if caller,
     ) %}
      <div class="control-group">

@@ -99,9 +99,11 @@
   {% endblock %}
 {% endmacro %}
 
- <!--org_required=not h.check_config_permission('create_unowned_dataset')
-      or h.scheming_field_required(field),-->
 
+ <!-- esto estaba abajo de la linea errors=errors,
+org_required=not h.check_config_permission('create_unowned_dataset')
+      or h.scheming_field_required(field),
+-->
 <div data-module="dataset-visibility">
   {% snippet "snippets/_organization_select.html",
     field=field,
