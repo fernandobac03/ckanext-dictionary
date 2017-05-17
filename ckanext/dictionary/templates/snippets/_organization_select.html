@@ -8,11 +8,11 @@ not used as a form_snippet directly #}
 -->
 {% macro _organization() %}
   {% set existing_org = data.owner_org or data.group_id %}
-  {% call form.input_block('field-organizations',
+  {#% call form.input_block('field-organizations',
     label=h.scheming_language_text(field.label),
     error=errors[field.field_name],
     extra_html=caller() if caller,
-    ) %}
+    ) %#}
      <div class="control-group">
       <!-- <label for="field-organizations" class="control-label">{{ _("Organization") }}</label>   -->
       <!--<div class="controls"> -->
