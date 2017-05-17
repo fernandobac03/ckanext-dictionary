@@ -49,7 +49,7 @@ lookup_package_plugin = ckan.lib.plugins.lookup_package_plugin
 
 class DDController(BaseController):
 
- def search(self):
+    def search(self):
         from ckan.lib.search import SearchError, SearchQueryError
 
         package_type = 'dataset'
