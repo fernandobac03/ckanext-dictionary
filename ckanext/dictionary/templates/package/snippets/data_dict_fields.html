@@ -99,6 +99,8 @@
   {% endblock %}
 {% endmacro %}
 
+ <!--org_required=not h.check_config_permission('create_unowned_dataset')
+      or h.scheming_field_required(field),-->
 
 <div data-module="dataset-visibility">
   {% snippet "snippets/_organization_select.html",
@@ -106,8 +108,6 @@
     data=data,
     errors=errors,
     organizations_available=h.organizations_available('create_dataset'),
-    #org_required=not h.check_config_permission('create_unowned_dataset')
-      or h.scheming_field_required(field),#
     organization_option_tag=organization_option_tag %}
 
   {% block package_metadata_fields_visibility %}
