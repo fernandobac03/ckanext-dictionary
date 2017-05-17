@@ -90,9 +90,20 @@
 </p>
 
 <div class="module">
-{% block breadcrumb_content %}
+<!--{% block breadcrumb_content %}
   <li class="active">{{ h.nav_link(_('Dataset_from_Data_Dict_fields'), controller='ckanext.dictionary.controller:DDController', action='search', highlight_actions = 'new index') }}</li>
 {% endblock %}
+-->
+
+{% macro organization_option_tag(organization, selected_org) %}
+  {% block organization_option scoped %}
+    <option value="{{ organization.id }}"{%
+      if selected_org %} selected="selected"{% endif
+      %}>{{ organization.display_name }}</option>
+  {% endblock %}
+{% endmacro %}
+
+
 <div class="module-content">
  {% block page_primary_action %}
        <!-- {% if h.check_access('package_create') %}
