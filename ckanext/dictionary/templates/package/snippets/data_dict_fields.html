@@ -91,41 +91,6 @@
 
 <div class="module">
 
-{% macro organization_option_tag(organization, selected_org) %}
-  {% block organization_option scoped %}
-    <option value="{{ organization.id }}"{%
-      if selected_org %} selected="selected"{% endif
-      %}>{{ organization.display_name }}</option>
-  {% endblock %}
-{% endmacro %}
-
-
- <!-- esto estaba abajo de la linea errors=errors,
-org_required=not h.check_config_permission('create_unowned_dataset')
-      or h.scheming_field_required(field),
--->
-<div data-module="dataset-visibility">
-  {% snippet "snippets/_organization_select.html",
-    field=field,
-    data=data,
-    errors=errors,
-    organizations_available=h.organizations_available('create_dataset'),
-    organization_option_tag=organization_option_tag %}
-
-  {% block package_metadata_fields_visibility %}
-    <div class="control-group">
-      <label for="field-private" class="control-label">{{ _('Visibility') }}</label>
-      <div class="controls">
-        <select id="field-private" name="private">
-          {% for option in [('True', _('Private')), ('False', _('Public'))] %}
-          <option value="{{ option[0] }}" {% if option[0] == data.private|trim %}selected="selected"{% endif %}>{{ option[1] }}</option>
-          {% endfor %}
-        </select>
-      </div>
-    </div>
-  {% endblock %}
-</div>
-
 <div class="module-content">
  {% block page_primary_action %}
        <!-- {% if h.check_access('package_create') %}
