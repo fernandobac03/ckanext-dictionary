@@ -128,6 +128,20 @@
         {{ h.snippet('snippets/package_list.html', packages=c.page.items) }}
       {% endblock %}
 
+
+  <select id="field-packages" name="packages" data-module="autocomplete">
+<!--          {% if h.check_config_permission('create_unowned_dataset') %}
+             <option value="" {% if not selected_org and data.id %} selected="selected" {% endif %}>{{ _('No organization') }}</option>
+          {% endif %} -->
+          {% for package in c.page.items %}
+            {# get out first org from users list only if there is not an existing org #}
+            {#% set selected_org = (existing_org and existing_org == organization.id) or (not existing_org and not data.id and organization.id == organizations_available[0].id) %#}
+    
+        <option value="{{ package.id }}">{{ package.name }}</option>
+          {% endfor %}
+        </select>
+
+
 </div>
 </div>
 
