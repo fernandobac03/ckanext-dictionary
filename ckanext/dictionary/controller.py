@@ -54,6 +54,10 @@ def _encode_params(params):
 
 class DDController(BaseController):
 
+    def _setup_template_variables(self, context, data_dict, package_type=None):
+        return lookup_package_plugin(package_type).\
+            setup_template_variables(context, data_dict)
+
 
     def index(self):
 	#print(sys.path)
