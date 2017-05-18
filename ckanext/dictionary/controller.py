@@ -50,8 +50,8 @@ lookup_package_plugin = ckan.lib.plugins.lookup_package_plugin
 
 class DDController(BaseController):
 
-def _encode_params(params):
-    return [(k, v.encode('utf-8') if isinstance(v, basestring) else str(v))
+    def _encode_params(params):
+        return [(k, v.encode('utf-8') if isinstance(v, basestring) else str(v))
             for k, v in params]
 
 
