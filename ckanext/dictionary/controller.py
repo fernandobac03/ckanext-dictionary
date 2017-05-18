@@ -47,12 +47,11 @@ flatten_to_string_key = logic.flatten_to_string_key
 
 lookup_package_plugin = ckan.lib.plugins.lookup_package_plugin
 
+def _encode_params(params):
+    return [(k, v.encode('utf-8') if isinstance(v, basestring) else str(v))
+            for k, v in params]
 
 class DDController(BaseController):
-
-    def _encode_params(params):
-        return [(k, v.encode('utf-8') if isinstance(v, basestring) else str(v))
-            for k, v in params]
 
 
     def index(self):
