@@ -4,13 +4,13 @@
 {{ super() }}
 <li class="last {{ s3 }}">
     {% if s2 != 'complete' %}
-      <span class="highlight">{{ _('Add data dictionary') }}</span>
+      <span class="highlight">{{ _('Seleccion de Esquema') }}</span>
     {% else %}
       {% if s1 == 'active' %}
         {# stage 1 }
-        <button class="highlight" name="save" value="go-resources" type="submit">{{ _('Add data dictionary') }}</button>
+        <button class="highlight" name="save" value="go-resources" type="submit">{{ _('Seleccion de Esquema') }}</button>
       {% else %}
-        {% link_for _('Add data dictionary'), controller='package', action='new', class_="highlight" %}
+        {% link_for _('Seleccion de Esquema'), controller='package', action='new', class_="highlight" %}
       {% endif %}
     {% endif %}
   </li>
@@ -20,10 +20,11 @@
 {{ super() }}
 {% if stage %}
       {% block add_data_dict_button %}
-        <button class="btn btn-primary" name="save" value="go-datadict" type="submit">{{ _('Add Data Dictionary') }}</button>
+        <button class="btn btn-primary" name="save" value="go-datadict" type="submit">{{ _('Seleccion de Esquema') }}</button>
       {% endblock %}
 {% endif %}
 
 {% endblock %}
+
 
  
