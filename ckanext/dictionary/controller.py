@@ -3,6 +3,7 @@ import ckan.plugins as p
 from ckan.lib.base import BaseController
 import ckan.lib.helpers as h
 from ckan.common import OrderedDict, _, json, request, c, g, response
+from paste.deploy.converters import asbool
 from urllib import urlencode
 import datetime
 import mimetypes
