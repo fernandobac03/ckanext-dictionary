@@ -23,6 +23,7 @@ import ckan.lib.uploader as uploader
 import ckan.plugins as p
 import ckan.lib.render
 
+from ckan.common import config
 
 #render = ckan.lib.base.render
 #from home import CACHE_PARAMETERS
