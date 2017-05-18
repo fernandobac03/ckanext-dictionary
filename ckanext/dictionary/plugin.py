@@ -13,8 +13,8 @@ class Data_DictionaryPlugin(p.SingletonPlugin):
 
 
     def before_map(self, map):
- 	map.connect('add dataset', '/dataset/new_form',controller='ckanext.dictionary.controller:DDController', action='finaldict')            
-
+ #	map.connect('add dataset', '/dataset/new_form',controller='ckanext.dictionary.controller:DDController', action='finaldict')            
+ 	map.connect('add dataset', '/organization/bulk_process/',controller='organization', action='bulk_process')    
 
 	map.connect(' temp', '/demp/demo',
             controller='ckanext.dictionary.controller:DDController',
@@ -43,8 +43,8 @@ class Data_DictionaryPlugin(p.SingletonPlugin):
         return map
 
     def after_map(self, map):
-	map.connect('add dataset', '/dataset/new_form',controller='ckanext.dictionary.controller:DDController', action='finaldict')       
-
+	#map.connect('add dataset', '/dataset/new_form',controller='ckanext.dictionary.controller:DDController', action='finaldict')       
+	map.connect('add dataset', '/organization/bulk_process/',controller='organization', action='bulk_process') 
 
         map.connect(' temp', '/demp/demo',
             controller='ckanext.dictionary.controller:DDController',
