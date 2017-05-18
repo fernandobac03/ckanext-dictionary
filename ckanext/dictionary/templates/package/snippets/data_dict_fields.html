@@ -102,7 +102,7 @@
           </div>
         {% endif %} -->
 
-	{% include "snippets/feeds.html" %}
+
 
  {% endblock %}
 
@@ -127,9 +127,7 @@
       {% block package_search_results_list %}
         {{ h.snippet('snippets/package_list.html', packages=c.page.items) }}
       {% endblock %}
-<select id="field-organizations" name="owner_org" data-module="autocomplete">
-  <option value="{{c.page.items}}" selected="selected">{{ c.page.items}}</option>
-</select>
+
 </div>
 </div>
 
