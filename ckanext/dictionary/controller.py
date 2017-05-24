@@ -439,8 +439,9 @@ class DDController(BaseController):
 
             #data = request.params
 
-		
-
+            target = request.form['key_of_the_data_we_need'] # the value that should be selected
+            mydict = {'5min': '5-Min', '1hour': 'Hour', '1day': 'Day'} # helper for the select
+   
             if save_action == 'go-add-dict':
                 context = {'model': model, 'session': model.Session,
                        'user': c.user or c.author, 'auth_user_obj': c.userobj}
@@ -451,7 +452,7 @@ class DDController(BaseController):
                 redirect(h.url_for(controller='package',
                                    action='read', id=id))
             elif save_action == 'go-dataset-new': #cambio aqui
-                redirect(h.url_for(controller="package", action="edit", id=c.selected_pkg)) #cambio aqui new por edit y agregue el id = pgk_name
+                redirect(h.url_for(controller="package", action="edit", id=target)) #cambio aqui new por edit y agregue el id = pgk_name
 
         #print("!!!!!!!!!!! the value of temp is",temp, id)
         print("!!!!!!!!!!!!")
