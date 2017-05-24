@@ -135,8 +135,14 @@
 -->
  {% block package_search_results_list %}
         {{ h.snippet('snippets/package_list.html', packages=c.page.items) }}
+
       {% endblock %}
 
+
+
+{% call form.select('packages', label=_('opciones'), options=c.page.items, selected=c.selected_pkg, error=errors.image_field, is_required=true) %}
+  {{ form.info(_('Image field to use in the gallery.'), inline=True) }}
+{% endcall %}
 
   <select id="field-packages" name="packages" data-module="autocomplete">
 <!--          {% if h.check_config_permission('create_unowned_dataset') %}
@@ -146,7 +152,7 @@
             {# get out first org from users list only if there is not an existing org #}
             {#% set selected_org = (existing_org and existing_org == organization.id) or (not existing_org and not data.id and organization.id == organizations_available[0].id) %#}
     
-	{% set selected_pkg = package.name %}
+
         <option value="{{ package.id }}">{{ package.name }}</option>
           {% endfor %}
         </select>
@@ -159,14 +165,12 @@
      {% if c.pkg %}
       {% snippet 'package/snippets/edit_data_dict_fields.html', extras=data.extras, errors=errors, pkg_name=pkg_name, limit=(c.pkg_data_dictionary|length)+1 %}
      {% else %}
-	{% snippet 'package/snippets/custom_data_dict_fields.html', pkg_name='prueba', extras=data.extras, errors=errors, limit=3 %}
+	{% snippet 'package/snippets/custom_data_dict_fields.html', extras=data.extras, errors=errors, limit=3 %}
      
 {% block content_action %}
  
     {% link_for _('Manage'), controller='package', action='edit', id=selected_pkg, class_='btn', icon='wrench' %}
     {% link_for _('Manage'), controller='package', action='edit', id='prueba', class_='btn', icon='wrench' %}
-    {#% link_for _('Manage'), controller='package', action='edit', id=field-packages.value, class_='btn', icon='wrench' %#}
-    {#% link_for _('Manage'), controller='package', action='edit', id=field-packages.text, class_='btn', icon='wrench' %#}
 
 {% endblock %}
 

@@ -34,7 +34,7 @@ log = logging.getLogger(__name__)
 render = base.render
 abort = base.abort
 redirect = h.redirect_to
-
+c.selected_pkg = "pruebacontrolador"
 
 NotFound = logic.NotFound
 NotAuthorized = logic.NotAuthorized
@@ -438,6 +438,9 @@ class DDController(BaseController):
                         counter = counter +1
 
             #data = request.params
+
+		
+
             if save_action == 'go-add-dict':
                 context = {'model': model, 'session': model.Session,
                        'user': c.user or c.author, 'auth_user_obj': c.userobj}
@@ -448,7 +451,7 @@ class DDController(BaseController):
                 redirect(h.url_for(controller='package',
                                    action='read', id=id))
             elif save_action == 'go-dataset-new': #cambio aqui
-                redirect(h.url_for(controller="package", action="edit", id=pkg_name)) #cambio aqui new por edit y agregue el id = pgk_name
+                redirect(h.url_for(controller="package", action="edit", id=c.selected_pkg)) #cambio aqui new por edit y agregue el id = pgk_name
 
         #print("!!!!!!!!!!! the value of temp is",temp, id)
         print("!!!!!!!!!!!!")
