@@ -1,8 +1,8 @@
 {% import 'macros/form.html' as form %}
 {% set data = data or {} %}
 {% set errors = errors or {} %}
-
-{% set action = form_action or h.url_for(c.link) %}
+{% set errors = errors or {} %}
+{% set selected_pkg = selected_pkg or {} %}
 
 <form id="resource-edit" class="dataset-form dataset-resource-form form-horizontal" method="post" action="{{ action }}" data-module="basic-form resource-form" enctype="multipart/form-data">
 {% block package_datadict_fields %}
@@ -146,6 +146,7 @@
             {# get out first org from users list only if there is not an existing org #}
             {#% set selected_org = (existing_org and existing_org == organization.id) or (not existing_org and not data.id and organization.id == organizations_available[0].id) %#}
     
+	{% set selected_pkg = package.name %}
         <option value="{{ package.id }}">{{ package.name }}</option>
           {% endfor %}
         </select>
@@ -158,7 +159,7 @@
      {% if c.pkg %}
       {% snippet 'package/snippets/edit_data_dict_fields.html', extras=data.extras, errors=errors, pkg_name=pkg_name, limit=(c.pkg_data_dictionary|length)+1 %}
      {% else %}
-	{% snippet 'package/snippets/custom_data_dict_fields.html', pkg_name = packages.value, extras=data.extras, errors=errors, limit=3 %}
+	{% snippet 'package/snippets/custom_data_dict_fields.html', pkg_name = selected_pkg, extras=data.extras, errors=errors, limit=3 %}
      {%endif%}
 
      {% endblock %}
