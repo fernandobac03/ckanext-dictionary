@@ -154,7 +154,7 @@
 
 </div>
 </div>
-
+{% set selected_pkg = package.name %}
     {% block data_dict_buttons %}
      {% if c.pkg %}
       {% snippet 'package/snippets/edit_data_dict_fields.html', extras=data.extras, errors=errors, pkg_name=pkg_name, limit=(c.pkg_data_dictionary|length)+1 %}
@@ -165,8 +165,8 @@
  
     {% link_for _('Manage'), controller='package', action='edit', id=selected_pkg, class_='btn', icon='wrench' %}
     {% link_for _('Manage'), controller='package', action='edit', id='prueba', class_='btn', icon='wrench' %}
-    {% link_for _('Manage'), controller='package', action='edit', id=field-packages.value, class_='btn', icon='wrench' %}
-    {% link_for _('Manage'), controller='package', action='edit', id=field-packages.text, class_='btn', icon='wrench' %}
+    {#% link_for _('Manage'), controller='package', action='edit', id=field-packages.value, class_='btn', icon='wrench' %#}
+    {#% link_for _('Manage'), controller='package', action='edit', id=field-packages.text, class_='btn', icon='wrench' %#}
 
 {% endblock %}
 
