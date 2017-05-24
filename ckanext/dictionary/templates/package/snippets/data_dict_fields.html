@@ -164,6 +164,9 @@
 {% block content_action %}
  
     {% link_for _('Manage'), controller='package', action='edit', id=selected_pkg, class_='btn', icon='wrench' %}
+    {% link_for _('Manage'), controller='package', action='edit', id='prueba', class_='btn', icon='wrench' %}
+    {% link_for _('Manage'), controller='package', action='edit', id=field-pakages.value, class_='btn', icon='wrench' %}
+    {% link_for _('Manage'), controller='package', action='edit', id=field-pakages.text, class_='btn', icon='wrench' %}
 
 {% endblock %}
 
