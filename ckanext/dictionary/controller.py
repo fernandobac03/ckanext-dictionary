@@ -448,7 +448,7 @@ class DDController(BaseController):
                 redirect(h.url_for(controller='package',
                                    action='read', id=id))
             elif save_action == 'go-dataset-new': #cambio aqui
-                redirect(h.url_for(controller="package", action="new")) #cambio aqui
+                redirect(h.url_for(controller="package", action="edit", id=pkg_name)) #cambio aqui new por edit y agregue el id = pgk_name
 
         #print("!!!!!!!!!!! the value of temp is",temp, id)
         print("!!!!!!!!!!!!")
