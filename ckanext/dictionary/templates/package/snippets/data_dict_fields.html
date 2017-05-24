@@ -158,7 +158,7 @@
      {% if c.pkg %}
       {% snippet 'package/snippets/edit_data_dict_fields.html', extras=data.extras, errors=errors, pkg_name=pkg_name, limit=(c.pkg_data_dictionary|length)+1 %}
      {% else %}
-	{% snippet 'package/snippets/custom_data_dict_fields.html', pkg_name = package.name, extras=data.extras, errors=errors, limit=3 %}
+	{% snippet 'package/snippets/custom_data_dict_fields.html', pkg_name = packages.value, extras=data.extras, errors=errors, limit=3 %}
      {%endif%}
 
      {% endblock %}
