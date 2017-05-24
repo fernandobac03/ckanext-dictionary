@@ -140,11 +140,11 @@
 
 
 
-{% call form.select('packages', label=_('opciones'), options=c.page.items, selected=c.selected_pkg, error=errors.image_field, is_required=true) %}
+{% call form.select('packages', label=_('opciones'), options=c.page.items, selected=c.selected_pkg, error=errors.image_field, is_required=false) %}
   {{ form.info(_('Image field to use in the gallery.'), inline=True) }}
 {% endcall %}
 
-  <select id="field-packages" name="packages" data-module="autocomplete">
+  <select id="field-packages" name="packages" data-module="autocomplete" selected={{c.selected_pkg}}>
 <!--          {% if h.check_config_permission('create_unowned_dataset') %}
              <option value="" {% if not selected_org and data.id %} selected="selected" {% endif %}>{{ _('No organization') }}</option>
           {% endif %} -->
