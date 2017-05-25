@@ -2,7 +2,7 @@
 {% set data = data or {} %}
 {% set errors = errors or {} %}
 {% set errors = errors or {} %}
-{% set selected_pkg = selected_pkg or {} %}
+
 
 <form id="resource-edit" class="dataset-form dataset-resource-form form-horizontal" method="post" action="{{ action }}" data-module="basic-form resource-form" enctype="multipart/form-data">
 {% block package_datadict_fields %}
@@ -152,16 +152,16 @@
             {# get out first org from users list only if there is not an existing org #}
             {#% set selected_org = (existing_org and existing_org == organization.id) or (not existing_org and not data.id and organization.id == organizations_available[0].id) %#}
     
-
-        <option value="{{ package.id }}">{{ package.name }}</option>
+	  {% set selected_pkg = package.name %} 
+        <option value="{{ package.id }}" {% if selected_pkg %} selected="selected" {% endif %}>{{ package.name }}</option>
           {% endfor %}
         </select>
 
 
   <select name="my_name">
-    	{% for package, value in c.page.items %}
-        	<option value="{{package}}" {% if (package == target) %} selected="selected" {% endif %}>
-        	{{value}}
+    	{% for packaged in c.page.items %}
+        	<option value="{{packaged.id}}" {% if (packaged == target) %} selected="selected" {% endif %}>
+        	{{packaged.name}}
         	</option>
     	{% endfor %}
   </select>
