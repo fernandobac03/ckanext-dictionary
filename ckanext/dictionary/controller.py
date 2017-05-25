@@ -25,6 +25,8 @@ import ckan.plugins as p
 import ckan.lib.render
 
 from ckan.common import config
+from flask import Flask, flash, redirect, render_template, \
+     request, url_for
 
 #render = ckan.lib.base.render
 #from home import CACHE_PARAMETERS
@@ -48,11 +50,28 @@ flatten_to_string_key = logic.flatten_to_string_key
 
 lookup_package_plugin = ckan.lib.plugins.lookup_package_plugin
 
+
+#3333333333333333333333333333333333333
+
+
+
+
+#333333333333333333333333333333333333333
+
+
+
+
 def _encode_params(params):
     return [(k, v.encode('utf-8') if isinstance(v, basestring) else str(v))
             for k, v in params]
 
 class DDController(BaseController):
+    def post(self):
+        acct_name = self.request.get('acct_name')
+        activity = self.request.get('activity')
+        self.write(acct_name)
+        self.write(activity)
+
 
     def _setup_template_variables(self, context, data_dict, package_type=None):
         return lookup_package_plugin(package_type).\

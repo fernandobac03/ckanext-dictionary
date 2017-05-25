@@ -167,6 +167,28 @@
   </select>
 
 
+
+<form method="post">
+
+  <label>
+    <div>Account Name</div>
+    <input type="text" name="acct_name" value="{{ acct_name }}">
+  </label>
+
+  <label>
+    <div>Parent</div>
+      <select name="activity">
+  	{% for activity in activities %}
+        <option value="{{ activity }}">{{ activity }}</option>
+        {% endfor %}
+      </select>
+  </label>
+
+  <input type="submit">
+
+</form>
+
+
 </div>
 </div>
 
@@ -179,6 +201,7 @@
 {% block content_action %}
  
     {% link_for _('Manage'), controller='package', action='edit', id=selected_pkg, class_='btn', icon='wrench' %}
+    {% link_for _('Manage'), controller='package', action='edit', id=target, class_='btn', icon='wrench' %}
     {% link_for _('Manage'), controller='package', action='edit', id='prueba', class_='btn', icon='wrench' %}
 
 {% endblock %}
