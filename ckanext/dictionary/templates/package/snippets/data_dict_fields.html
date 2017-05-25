@@ -169,7 +169,7 @@
 
 <select name='sel' id='sel'>
    {% for packaged in c.page.items %}
-    {% set selected_pkg = package.name %} 
+    {% set selected_pkg = packaged.name %} 
     <option value="{{ packaged.name }}" {% if selected_pkg %} selected="selected" {% endif %}>{{ packaged.name }}</option>
    {% endfor %}
 </select>
