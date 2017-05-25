@@ -160,9 +160,7 @@
 
 <select name="my_name">
     {% for pack, value in c.page.items %}
-        <option value="{{key}}" 
-        {% if (pack == target) %} selected="selected" { %endif %}
-        >
+        <option value="{{key}}" {% if (pack == target) %} selected="selected" { %endif %}>
         {{value}}
         </option>
     {% endfor %}
