@@ -13,7 +13,7 @@ class Data_DictionaryPlugin(p.SingletonPlugin):
 
 
     def before_map(self, map):
- 	map.connect('add dataset', '/dataset/new_form',controller='ckanext.dictionary.controller:DDController', action='finaldict')            
+ 	map.connect('add dataset new form', '/dataset/new_form',controller='ckanext.dictionary.controller:DDController', action='finaldict')            
  	
 	map.connect(' temp', '/demp/demo',
             controller='ckanext.dictionary.controller:DDController',
