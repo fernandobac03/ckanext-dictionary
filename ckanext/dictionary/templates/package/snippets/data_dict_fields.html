@@ -167,26 +167,12 @@
   </select>
 
 
-
-<form method="post">
-
-  <label>
-    <div>Account Name</div>
-    <input type="text" name="acct_name" value="{{ acct_name }}">
-  </label>
-
-  <label>
-    <div>Parent</div>
-      <select name="activity">
-  	{% for activity in activities %}
-        <option value="{{ activity }}">{{ activity }}</option>
-        {% endfor %}
-      </select>
-  </label>
-
-  <input type="submit">
-
-</form>
+<select name='sel' id='sel'>
+   {% for packaged in c.page.items %}
+    {% set selected_pkg = package.name %} 
+    <option value="{{ packaged.name }}" {% if selected_pkg %} selected="selected" {% endif %}>{{ packaged.name }}</option>
+   {% endfor %}
+</select>
 
 
 </div>

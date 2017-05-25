@@ -25,8 +25,7 @@ import ckan.plugins as p
 import ckan.lib.render
 
 from ckan.common import config
-from flask import Flask, flash, redirect, render_template, \
-     request, url_for
+
 
 #render = ckan.lib.base.render
 #from home import CACHE_PARAMETERS
@@ -66,11 +65,7 @@ def _encode_params(params):
             for k, v in params]
 
 class DDController(BaseController):
-    def post(self):
-        acct_name = self.request.get('acct_name')
-        activity = self.request.get('activity')
-        self.write(acct_name)
-        self.write(activity)
+ 
 
 
     def _setup_template_variables(self, context, data_dict, package_type=None):
@@ -458,9 +453,8 @@ class DDController(BaseController):
 
             #data = request.params
 
-            target = request.form['key_of_the_data_we_need'] # the value that should be selected
-            mydict = {'5min': '5-Min', '1hour': 'Hour', '1day': 'Day'} # helper for the select
-   
+            sel = request.params.get('sel')
+            
             if save_action == 'go-add-dict':
                 context = {'model': model, 'session': model.Session,
                        'user': c.user or c.author, 'auth_user_obj': c.userobj}
@@ -471,7 +465,7 @@ class DDController(BaseController):
                 redirect(h.url_for(controller='package',
                                    action='read', id=id))
             elif save_action == 'go-dataset-new': #cambio aqui
-                redirect(h.url_for(controller="package", action="edit", id=target)) #cambio aqui new por edit y agregue el id = pgk_name
+                redirect(h.url_for(controller="package", action="edit", id=sel)) #cambio aqui new por edit y agregue el id = pgk_name
 
         #print("!!!!!!!!!!! the value of temp is",temp, id)
         print("!!!!!!!!!!!!")
