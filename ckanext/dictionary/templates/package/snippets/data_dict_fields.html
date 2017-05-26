@@ -132,17 +132,20 @@
      <!--   {% snippet 'snippets/search_form.html', form_id='dataset-search-form', type='dataset', query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, facets=facets, show_empty=request.params, error=c.query_error, fields=c.fields %}
       {% endblock %}
      
--->
+
  {% block package_search_results_list %}
         {{ h.snippet('snippets/package_list.html', packages=c.page.items) }}
 
       {% endblock %}
 
+-->
 
 
+<!--
 {% call form.select('packages', label=_('opciones'), options=c.page.items, selected=c.selected_pkg, error=errors.image_field, is_required=false) %}
   {{ form.info(_('Image field to use in the gallery.'), inline=True) }}
 {% endcall %}
+-->
 
   <select id="field-packages" name="packages" data-module="autocomplete" selected={{c.selected_pkg}}>
 <!--          {% if h.check_config_permission('create_unowned_dataset') %}
@@ -156,15 +159,6 @@
         <option value="{{ package.id }}" {% if selected_pkg %} selected="selected" {% endif %}>{{ package.name }}</option>
           {% endfor %}
         </select>
-
-
-  <select name="my_name">
-    	{% for packaged in c.page.items %}
-        	<option value="{{packaged.id}}" {% if (packaged == target) %} selected="selected" {% endif %}>
-        	{{packaged.name}}
-        	</option>
-    	{% endfor %}
-  </select>
 
 
 <select name='sel' id='sel'>
@@ -184,19 +178,19 @@
      {% else %}
 	{% snippet 'package/snippets/custom_data_dict_fields.html', extras=data.extras, errors=errors, limit=3 %}
      
-{% block content_action %}
+
+{#% block content_action %#}
  
-    {% link_for _('Manage'), controller='package', action='edit', id=selected_pkg, class_='btn', icon='wrench' %}
-    {% link_for _('Manage'), controller='package', action='edit', id=target, class_='btn', icon='wrench' %}
-    {% link_for _('Manage'), controller='package', action='edit', id='prueba', class_='btn', icon='wrench' %}
+    {#% link_for _('Manage'), controller='package', action='edit', id=selected_pkg, class_='btn', icon='wrench' %#}
+    {#% link_for _('Manage'), controller='package', action='edit', id=target, class_='btn', icon='wrench' %#}
+    {#% link_for _('Manage'), controller='package', action='edit', id='prueba', class_='btn', icon='wrench' %#}
 
-{% endblock %}
-
-
+{#% endblock %#}
 
 
 
-{%endif%}
+
+    {%endif%}
 
      {% endblock %}
     {% endblock %}
