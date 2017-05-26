@@ -177,7 +177,8 @@
       {% snippet 'package/snippets/edit_data_dict_fields.html', extras=data.extras, errors=errors, pkg_name=pkg_name, limit=(c.pkg_data_dictionary|length)+1 %}
      {% else %}
 	{% snippet 'package/snippets/custom_data_dict_fields.html', extras=data.extras, errors=errors, limit=3 %}
-     
+    
+   {% link_for _('Create Create'), controller='ckanext.dictionary.controller:DDController', action='new_data_dictionary', class_='btn btn-primary', icon='plus-square' value="go-dataset-new %}
 
 {#% block content_action %#}
  
