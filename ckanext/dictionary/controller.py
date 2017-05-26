@@ -486,7 +486,7 @@ class DDController(BaseController):
 
 
 
-    def new_data_dictionary(self, id):
+    def new_data_dictionary_dos(self, id):
       	redirect(h.url_for(controller='package', action='new')) 
 
 
