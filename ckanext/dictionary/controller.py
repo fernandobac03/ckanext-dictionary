@@ -326,7 +326,7 @@ class DDController(BaseController):
     def redirectSecond(self, id, data=None, errors=None):
         return render("package/new_resource.html")
     def new_data_dictionary(self, id):
-        redirect(h.url_for(controller="package", action="new")) #cambio aqui new por edit y agregue el id = pgk_name
+        
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!IN THE EXTENTION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         if request.method == 'POST':
             save_action = request.params.get('save')
