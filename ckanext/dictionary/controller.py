@@ -473,6 +473,37 @@ class DDController(BaseController):
         print("!!!!!!!!!!!!")
         redirect(h.url_for(controller='package', action='read', id=id))
 
+
+################################################################
+ 
+ 
+#Agregando para pruebas
+
+
+#######################################################################
+
+
+
+
+
+    def new_data_dictionary(self, id):
+      	redirect(h.url_for(controller='package', action='new')) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ##### documentado desde aqui    ####
 
 
