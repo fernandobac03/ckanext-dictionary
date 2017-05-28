@@ -15,7 +15,7 @@ class Data_DictionaryPlugin(p.SingletonPlugin):
     def before_map(self, map):
  	map.connect('add dataset new form', '/dataset/new_form',controller='ckanext.dictionary.controller:DDController', action='finaldict')    
 
-	map.connect('add dataset', '/dataset/new_inia',controller='ckanext.dictionary.controller:DDController', action='new')          
+	map.connect('add dataset', '/dataset/new_inia',controller='ckanext.dictionary.controller:DDController', action='new_data_dictionary_dos')          
  	
 	map.connect(' temp', '/demp/demo',
             controller='ckanext.dictionary.controller:DDController',
@@ -46,7 +46,7 @@ class Data_DictionaryPlugin(p.SingletonPlugin):
     def after_map(self, map):
 	map.connect('add dataset new form', '/dataset/new_form',controller='ckanext.dictionary.controller:DDController', action='finaldict')       
 	
-	map.connect('add dataset', '/dataset/new_inia',controller='ckanext.dictionary.controller:DDController', action='new')   
+	map.connect('add dataset', '/dataset/new_inia',controller='ckanext.dictionary.controller:DDController', action='new_data_dictionary_dos')   
 
         map.connect(' temp', '/demp/demo',
             controller='ckanext.dictionary.controller:DDController',

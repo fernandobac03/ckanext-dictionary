@@ -66,16 +66,10 @@ def _encode_params(params):
 
 class DDController(BaseController):
  
-    def _package_form(self, package_type=None):
-        return lookup_package_plugin(package_type).package_form()
-
 
     def _setup_template_variables(self, context, data_dict, package_type=None):
         return lookup_package_plugin(package_type).\
             setup_template_variables(context, data_dict)
-
-    def _new_template(self, package_type):
-        return lookup_package_plugin(package_type).new_template()
 
     def index(self):
 	#print(sys.path)
@@ -490,13 +484,11 @@ class DDController(BaseController):
 
 
 
-    def new_data_dictionary_dos(self, id):
-        if request.method == 'POST':
-       	    save_action = request.params.get('savedd')
-      	
-        if save_action == 'go-dataset-new': #cambio aqui     
-	    redirect(h.url_for(controller="package", action="new")) #cambio aqui new por edit y agregue el id = pgk_name
-
+    def new_data_dictionary_dos(self):
+        c.form_action = h.url_for(controller='package', action='new')
+        c.form_style = 'new'
+        return self.new(data=data, errors=errors,
+                                   error_summary=error_summary)
 
 
 
@@ -764,169 +756,6 @@ class DDController(BaseController):
 #        return render('package/dictionary_display.html',{'dataset_type': dataset_type})
 
 
-    
-    def new(self, data=None, errors=None, error_summary=None):
-        if data and 'type' in data:
-            package_type = data['type']
-        else:
-            package_type = self._guess_package_type(True)
 
-        context = {'model': model, 'session': model.Session,
-                   'user': c.user, 'auth_user_obj': c.userobj,
-                   'save': 'save' in request.params}
 
-        # Package needs to have a organization group in the call to
-        # check_access and also to save it
-        try:
-            check_access('package_create', context)
-        except NotAuthorized:
-            abort(403, _('Unauthorized to create a package'))
 
-        if context['save'] and not data:
-            return self._save_new(context, package_type=package_type)
-
-        data = data or clean_dict(dict_fns.unflatten(tuplize_dict(parse_params(
-            request.params, ignore_keys=CACHE_PARAMETERS))))
-        c.resources_json = h.json.dumps(data.get('resources', []))
-        # convert tags if not supplied in data
-        if data and not data.get('tag_string'):
-            data['tag_string'] = ', '.join(
-                h.dict_list_reduce(data.get('tags', {}), 'name'))
-
-        errors = errors or {}
-        error_summary = error_summary or {}
-        # in the phased add dataset we need to know that
-        # we have already completed stage 1
-        stage = ['active']
-        if data.get('state', '').startswith('draft'):
-            stage = ['active', 'complete']
-
-        # if we are creating from a group then this allows the group to be
-        # set automatically
-        data['group_id'] = request.params.get('group') or \
-            request.params.get('groups__0__id')
-
-        form_snippet = self._package_form(package_type=package_type)
-        form_vars = {'data': data, 'errors': errors,
-                     'error_summary': error_summary,
-                     'action': 'new', 'stage': stage,
-                     'dataset_type': package_type,
-                     }
-        c.errors_json = h.json.dumps(errors)
-
-        self._setup_template_variables(context, {},
-                                       package_type=package_type)
-
-        new_template = self._new_template(package_type)
-        return render(new_template,
-                      extra_vars={'form_vars': form_vars,
-                                  'form_snippet': form_snippet,
-                                  'dataset_type': package_type})
-
-    
-    def _guess_package_type(self, expecting_name=False):
-        """
-            Guess the type of package from the URL handling the case
-            where there is a prefix on the URL (such as /data/package)
-        """
-
-        # Special case: if the rot URL '/' has been redirected to the package
-        # controller (e.g. by an IRoutes extension) then there's nothing to do
-        # here.
-        if request.path == '/':
-            return 'dataset'
-
-        parts = [x for x in request.path.split('/') if x]
-
-        idx = -1
-        if expecting_name:
-            idx = -2
-
-        pt = parts[idx]
-        if pt == 'package':
-            pt = 'dataset'
-
-        return pt
-
-    def _save_new(self, context, package_type=None):
-        # The staged add dataset used the new functionality when the dataset is
-        # partially created so we need to know if we actually are updating or
-        # this is a real new.
-        is_an_update = False
-        ckan_phase = request.params.get('_ckan_phase')
-        from ckan.lib.search import SearchIndexError
-        try:
-            data_dict = clean_dict(dict_fns.unflatten(
-                tuplize_dict(parse_params(request.POST))))
-            if ckan_phase:
-                # prevent clearing of groups etc
-                context['allow_partial_update'] = True
-                # sort the tags
-                if 'tag_string' in data_dict:
-                    data_dict['tags'] = self._tag_string_to_list(
-                        data_dict['tag_string'])
-                if data_dict.get('pkg_name'):
-                    is_an_update = True
-                    # This is actually an update not a save
-                    data_dict['id'] = data_dict['pkg_name']
-                    del data_dict['pkg_name']
-                    # don't change the dataset state
-                    data_dict['state'] = 'draft'
-                    # this is actually an edit not a save
-                    pkg_dict = get_action('package_update')(context, data_dict)
-
-                    if request.params['save'] == 'go-metadata':
-                        # redirect to add metadata
-                        url = h.url_for(controller='package',
-                                        action='new_metadata',
-                                        id=pkg_dict['name'])
-                    else:
-                        # redirect to add dataset resources
-                        url = h.url_for(controller='package',
-                                        action='new_resource',
-                                        id=pkg_dict['name'])
-                    h.redirect_to(url)
-                # Make sure we don't index this dataset
-                if request.params['save'] not in ['go-resource',
-                                                  'go-metadata']:
-                    data_dict['state'] = 'draft'
-                # allow the state to be changed
-                context['allow_state_change'] = True
-
-            data_dict['type'] = package_type
-            context['message'] = data_dict.get('log_message', '')
-            pkg_dict = get_action('package_create')(context, data_dict)
-
-            if ckan_phase:
-                # redirect to add dataset resources
-                url = h.url_for(controller='package',
-                                action='new_resource',
-                                id=pkg_dict['name'])
-                h.redirect_to(url)
-
-            self._form_save_redirect(pkg_dict['name'], 'new',
-                                     package_type=package_type)
-        except NotAuthorized:
-            abort(403, _('Unauthorized to read package %s') % '')
-        except NotFound, e:
-            abort(404, _('Dataset not found'))
-        except dict_fns.DataError:
-            abort(400, _(u'Integrity Error'))
-        except SearchIndexError, e:
-            try:
-                exc_str = unicode(repr(e.args))
-            except Exception:  # We don't like bare excepts
-                exc_str = unicode(str(e))
-            abort(500, _(u'Unable to add package to search index.') + exc_str)
-        except ValidationError, e:
-            errors = e.error_dict
-            error_summary = e.error_summary
-            if is_an_update:
-                # we need to get the state of the dataset to show the stage we
-                # are on.
-                pkg_dict = get_action('package_show')(context, data_dict)
-                data_dict['state'] = pkg_dict['state']
-                return self.edit(data_dict['id'], data_dict,
-                                 errors, error_summary)
-            data_dict['state'] = 'none'
-            return self.new(data_dict, errors, error_summary)
