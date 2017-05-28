@@ -17,7 +17,7 @@
   {% block package_metadata_fields_custom %}
 
 
-<!--
+
 <p>
 <div data-module="custom-fields">
 
@@ -79,11 +79,11 @@
       <div class="span3"><input id="description-{{ index }}" type="text" name="description_{{ index }}" value="{{current_data_dict['description']}}" style="width:90%" /></div>
       <div class=""><input id="id-{{ index }}" type="hidden" name="id_{{ index }}" value="{{current_data_dict['id']}}" /></div>
 
-        <!--<label class="checkbox" for="{{ 'remove-%d' % index }}">
+       <label class="checkbox" for="{{ 'remove-%d' % index }}">
           <input type="checkbox" id="{{ 'remove-%d' % index }}" name="{{ 'remove_%d' % index }}" />
-        </label>-->
+        </label>
 
-<!--
+
    </div>
     </div>
   {% endfor %}
@@ -94,7 +94,7 @@
 </p>
 
 
--->
+
 
 <div class="module">
 
@@ -129,17 +129,16 @@
           (_('Last Modified'), 'metadata_modified desc'),
           (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false) ]
         %}
-     <!--   {% snippet 'snippets/search_form.html', form_id='dataset-search-form', type='dataset', query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, facets=facets, show_empty=request.params, error=c.query_error, fields=c.fields %}
--->  
+        {% snippet 'snippets/search_form.html', form_id='dataset-search-form', type='dataset', query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, facets=facets, show_empty=request.params, error=c.query_error, fields=c.fields %}
+  
     {% endblock %}
      
-<!--
+
  {% block package_search_results_list %}
         {{ h.snippet('snippets/package_list.html', packages=c.page.items) }}
 
       {% endblock %}
 
--->
 
 
 <!--
@@ -156,7 +155,7 @@
             {# get out first org from users list only if there is not an existing org #}
             {#% set selected_org = (existing_org and existing_org == organization.id) or (not existing_org and not data.id and organization.id == organizations_available[0].id) %#}
     
-	  {% set selected_pkg = package.name %} 
+	    {% set selected_pkg = package.name %} 
         <option value="{{ package.id }}" {% if selected_pkg %} selected="selected" {% endif %}>{{ package.name }}</option>
           {% endfor %}
         </select>
