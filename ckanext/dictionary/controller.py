@@ -85,6 +85,17 @@ class DDController(BaseController):
                 return result
         return lookup_package_plugin().resource_form()
 
+
+    def _get_package_type(self, id):
+        """
+        Given the id of a package this method will return the type of the
+        package, or 'dataset' if no type is currently set
+        """
+        pkg = model.Package.get(id)
+        if pkg:
+            return pkg.type or 'dataset'
+        return None
+
 	
     def finaldict(self, data=None, errors=None):
 
