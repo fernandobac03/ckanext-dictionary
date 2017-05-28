@@ -281,7 +281,7 @@ class DDController(BaseController):
         #    print("!!!!!!!!!!!!!!!!!!1 POsted FROM EXTENSION!!!!!!!!!!!1")    cambie aqui
             #print(request.params.get())
         #c.link = str("/dataset/dictionary/new_dict/"+"prueba")
-	return render("package/new_data_dict.html",extra_vars={'package_id':id})
+	return render("package/new_data_dict.html",extra_vars={'package_id':'prueba'})
 
 
 #    def edit_dictionary(self, id, data=None, errors=None):
