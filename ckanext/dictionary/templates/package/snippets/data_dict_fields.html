@@ -17,7 +17,7 @@
 
   {% block package_metadata_fields_custom %}
 
-
+<!--
 
 <p>
 <div data-module="custom-fields">
@@ -35,6 +35,7 @@
   {%else%}
 	{%set data_dict = [[],[],[]]%}
   {%endif%} 
+<!--
   {% for extra in data_dict %}
     {% set index = loop.index0 + (extras|count) %}
     {% if data_dict[index] %}
@@ -94,13 +95,13 @@
 </div>
 </p>
 
+-->
 
 
 
 
 
-
-<div class="module">
+<div class="module-select-db">
 <!--
       {% block form %}
         {% set facets = {
@@ -170,7 +171,7 @@
 {% block content_action %}
 
     
-   {% link_for _('Create Create'), controller='ckanext.dictionary.controller:DDController', action='new_data_dictionary', class_='btn btn-primary', icon='plus-square', value='go-dataset-new' %} 
+   {% link_for _('Create Create'), controller='ckanext.dictionary.controller:DDController', action='new_data_dictionary', class_='btn btn-primary', icon='plus-square'%} 
 
 
 
