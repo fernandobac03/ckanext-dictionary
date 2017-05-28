@@ -121,10 +121,9 @@
     {% endblock %}
      -->
 
- {% block package_search_results_list %}
+   {% block package_search_results_list %}
         {{ h.snippet('snippets/package_list.html', packages=c.page.items) }}
-
-      {% endblock %}
+   {% endblock %}
 
 
 
@@ -134,7 +133,7 @@
 {% endcall %}
 -->
 
-  <select id="field-packages" name="packages" data-module="autocomplete" selected={{c.selected_pkg}}>
+  <select id="field-packages" name="packages" data-module="autocomplete">
 <!--          {% if h.check_config_permission('create_unowned_dataset') %}
              <option value="" {% if not selected_org and data.id %} selected="selected" {% endif %}>{{ _('No organization') }}</option>
           {% endif %} -->
@@ -143,17 +142,17 @@
             {#% set selected_org = (existing_org and existing_org == organization.id) or (not existing_org and not data.id and organization.id == organizations_available[0].id) %#}
     
 	    {% set selected_pkg = package.name %} 
-        <option value="{{ package.id }}" {% if selected_pkg %} selected="selected" {% endif %}>{{ package.name }}</option>
+            <option value="{{ package.id }}" {% if selected_pkg %} selected="selected" {% endif %}>{{ package.name }}</option>
           {% endfor %}
-        </select>
+  </select>
 
 
-<select name='sel' id='sel'>
-   {% for packaged in c.page.items %}
-    {% set selected_pkg = packaged.name %} 
-    <option value="{{ packaged.name }}" {% if selected_pkg %} selected="selected" {% endif %}>{{ packaged.name }}</option>
-   {% endfor %}
-</select>
+  <select name='sel' id='sel'>
+     {% for packaged in c.page.items %}
+      {% set selected_pkg = packaged.name %} 
+      <option value="{{ packaged.name }}" {% if selected_pkg %} selected="selected" {% endif %}>{{ packaged.name }}</option>
+     {% endfor %}
+  </select>
 
 
 </div>
@@ -163,6 +162,8 @@
       {% snippet 'package/snippets/edit_data_dict_fields.html', extras=data.extras, errors=errors, pkg_name=pkg_name, limit=(c.pkg_data_dictionary|length)+1 %}
      {% else %}
 	{% snippet 'package/snippets/custom_data_dict_fields.html', extras=data.extras, errors=errors, limit=3 %}
+     {%endif%}
+     {% endblock %}
 
 
 {% block content_action %}
@@ -181,9 +182,8 @@
 
 
 
-    {%endif%}
 
-     {% endblock %}
+
     {% endblock %}
   {% endblock %}
 </form>
