@@ -487,8 +487,8 @@ class DDController(BaseController):
     def new_data_dictionary_dos(self):
         c.form_action = h.url_for(controller='package', action='new')
         c.form_style = 'new'
-        redirect(h.url_for(controller="package", action="new"))
-
+        #redirect(h.url_for(controller="package", action="new"))
+	redirect(h.url_for(controller="package", action="edit", id='prueba'))
 
 
 
