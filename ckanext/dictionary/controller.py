@@ -49,7 +49,7 @@ flatten_to_string_key = logic.flatten_to_string_key
 
 lookup_package_plugin = ckan.lib.plugins.lookup_package_plugin
 
-
+get_action = logic.get_action
 #3333333333333333333333333333333333333
 
 
@@ -485,13 +485,37 @@ class DDController(BaseController):
     def new_data_dictionary_dos(self):
         if request.method == 'POST':
             save_action = request.params.get('save')        
-            sel = "no_llega"
+            sel = ""
+            sel = request.params.get('sel')
+
             if save_action == 'go-dataset-new':        
-                c.form_action = h.url_for(controller='package', action='new')
-                c.form_style = 'new'
-                #redirect(h.url_for(controller="package", action="new"))
-	        sel = request.params.get('sel')
-	        redirect(h.url_for(controller="package", action="edit", id=sel))
+                package_type = self._get_package_type(sel)
+                context = {'model': model, 'session': model.Session,
+                   'user': c.user, 'auth_user_obj': c.userobj,
+                   'save': 'save' in request.params}
+
+                #if context['save'] and not data:
+                #    return self._save_edit(sel, context, package_type=package_type)
+                try:
+                    c.pkg_dict = get_action('package_show')(dict(context,
+                                                         for_view=True),
+                                                    {'id': sel})
+                    context['for_edit'] = True
+                    old_data = get_action('package_show')(context, {'id': sel})
+                    # old data is from the database and data is passed from the
+                    # user if there is a validation error. Use users data if there.
+                    if data:
+                        old_data.update(data)
+                        data = old_data
+                except (NotFound, NotAuthorized):
+                    abort(404, _('Dataset not found'))
+		            
+
+                #c.form_action = h.url_for(controller='package', action='new')
+                #c.form_style = 'new'
+               
+	        
+		redirect(h.url_for(controller="package", action="edit", id=sel, {data,data}))
 
 
 
