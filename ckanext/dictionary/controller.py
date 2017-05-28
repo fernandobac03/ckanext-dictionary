@@ -510,12 +510,11 @@ class DDController(BaseController):
                 except (NotFound, NotAuthorized):
                     abort(404, _('Dataset not found'))
 		            
-
                 #c.form_action = h.url_for(controller='package', action='new')
                 #c.form_style = 'new'
-               
-	        
-		redirect(h.url_for(controller="package", action="edit", id=sel, {data,data}))
+              
+		redirect(h.url_for(controller="package", action="new"), {data=data})
+
 
 
 
