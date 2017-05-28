@@ -513,7 +513,7 @@ class DDController(BaseController):
                 #c.form_action = h.url_for(controller='package', action='new')
                 #c.form_style = 'new'
               
-		redirect(h.url_for(controller="package", action="new"), {data=data})
+		redirect(h.url_for(controller="package", action="new"))
 
 
 
