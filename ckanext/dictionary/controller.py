@@ -488,10 +488,10 @@ class DDController(BaseController):
 
     def new_data_dictionary_dos(self, id):
         if request.method == 'POST':
-            save_action = request.params.get('savedd')
+       	    save_action = request.params.get('savedd')
       	
         if save_action == 'go-dataset-new': #cambio aqui     
-		redirect(h.url_for(controller="package", action="new")) #cambio aqui new por edit y agregue el id = pgk_name
+	    redirect(h.url_for(controller="package", action="new")) #cambio aqui new por edit y agregue el id = pgk_name
 
 
 
@@ -760,9 +760,8 @@ class DDController(BaseController):
 #        return render('package/dictionary_display.html',{'dataset_type': dataset_type})
 
 
-
-
- def new(self, data=None, errors=None, error_summary=None):
+    
+    def new(self, data=None, errors=None, error_summary=None):
         if data and 'type' in data:
             package_type = data['type']
         else:
