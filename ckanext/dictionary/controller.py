@@ -277,9 +277,9 @@ class DDController(BaseController):
 
 
 
-        #if request.method== 'POST':                                           cambie aqui
-        #    print("!!!!!!!!!!!!!!!!!!1 POsted FROM EXTENSION!!!!!!!!!!!1")    cambie aqui
-            #print(request.params.get())
+        if request.method== 'POST':                                           
+            print("!!!!!!!!!!!!!!!!!!1 POsted FROM EXTENSION!!!!!!!!!!!1")    
+            print(request.params.get())
         c.link = str("/dataset/dictionary/new_dict/"+"prueba")
 	return render("package/new_data_dict.html",extra_vars={'package_id':'prueba'})
 
