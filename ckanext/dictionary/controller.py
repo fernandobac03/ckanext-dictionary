@@ -487,8 +487,11 @@ class DDController(BaseController):
 
 
     def new_data_dictionary_dos(self, id):
-      	return redirect(h.url_for(controller='package', action='new')) 
-
+        if request.method == 'POST':
+            save_action = request.params.get('savedd')
+      	
+        if save_action == 'go-dataset-new': #cambio aqui     
+		redirect(h.url_for(controller="package", action="new")) #cambio aqui new por edit y agregue el id = pgk_name
 
 
 
