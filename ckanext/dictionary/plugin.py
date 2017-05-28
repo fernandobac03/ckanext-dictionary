@@ -27,7 +27,7 @@ class Data_DictionaryPlugin(p.SingletonPlugin):
 	map.connect('dataset_edit_dictionary','/dataset/dictionary/edit/{id}',
 		controller='ckanext.dictionary.controller:DDController',
                 action='edit_dictionary', ckan_icon='edit')
-	map.connect('/dataset/new_resource/{id}',controller='ckanext.dictionary.controller:DDController', action='new_resource_ext')
+	#map.connect('/dataset/new_resource/{id}',controller='ckanext.dictionary.controller:DDController', action='new_resource_ext') documentado por fernando
 	#m.connect('Intermediate post', '/dataset/dictionary/capstonePost', action='testPost')
 	map.connect('data dict button','/dataset/dictionary/new_dict/{id}',
 		controller='ckanext.dictionary.controller:DDController',
@@ -58,7 +58,7 @@ class Data_DictionaryPlugin(p.SingletonPlugin):
         map.connect('dataset_edit_dictionary','/dataset/dictionary/edit/{id}',
                 controller='ckanext.dictionary.controller:DDController',
                 action='edit_dictionary', ckan_icon='edit')
-        map.connect('/dataset/new_resource/{id}',controller='ckanext.dictionary.controller:DDController', action='new_resource_ext')
+       # map.connect('/dataset/new_resource/{id}',controller='ckanext.dictionary.controller:DDController', action='new_resource_ext') documentado por fernando
         #m.connect('Intermediate post', '/dataset/dictionary/capstonePost', action='testPost')
         #map.connect('data dict button','/dataset/dictionary/new_dict/{id}',
         #       controller='ckanext.dictionary.controller:DDController',
