@@ -272,14 +272,14 @@ class DDController(BaseController):
 
 
 
-
-
+	variable=''
 
         if request.method== 'POST':                                           
             print("!!!!!!!!!!!!!!!!!!1 POsted FROM EXTENSION!!!!!!!!!!!1")    
-            #print(request.params.get())
-        c.link = str("/dataset/dictionary/new_dict/"+"prueba")
-	return render("package/new_data_dict.html",extra_vars={'package_id':'prueba'})
+            variable = request.params.get('sel')
+        
+	c.link = str("/dataset/dictionary/new_dict/"+"prueba")
+	return render("package/new_data_dict.html",extra_vars={'package_id':variable})
 
 
 #    def edit_dictionary(self, id, data=None, errors=None):
@@ -482,14 +482,16 @@ class DDController(BaseController):
 
 
 
-
-
     def new_data_dictionary_dos(self):
-        c.form_action = h.url_for(controller='package', action='new')
-        c.form_style = 'new'
-        #redirect(h.url_for(controller="package", action="new"))
-	sel = request.params.get('sel')
-	redirect(h.url_for(controller="package", action="edit", id=sel))
+        if request.method == 'POST':
+            save_action = request.params.get('save')        
+            sel = "no_llega"
+            if save_action == 'go-dataset-new':        
+                c.form_action = h.url_for(controller='package', action='new')
+                c.form_style = 'new'
+                #redirect(h.url_for(controller="package", action="new"))
+	        sel = request.params.get('sel')
+	        redirect(h.url_for(controller="package", action="edit", id=sel))
 
 
 
