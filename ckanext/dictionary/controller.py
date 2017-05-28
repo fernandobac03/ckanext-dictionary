@@ -487,7 +487,7 @@ class DDController(BaseController):
     def new_data_dictionary_dos(self):
         c.form_action = h.url_for(controller='package', action='new')
         c.form_style = 'new'
-        return self.new(data=data, errors=errors,
+        return ckan.controllers.package.new(data=data, errors=errors,
                                    error_summary=error_summary)
 
 
