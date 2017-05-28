@@ -122,12 +122,12 @@
   
     {% endblock %}
      -->
-
+<!--
    {% block package_search_results_list %}
         {{ h.snippet('snippets/package_list.html', packages=c.page.items) }}
    {% endblock %}
 
-
+-->
 
 <!--
 {% call form.select('packages', label=_('opciones'), options=c.page.items, selected=c.selected_pkg, error=errors.image_field, is_required=false) %}
@@ -168,24 +168,6 @@
 	{% snippet 'package/snippets/custom_data_dict_fields.html', extras=data.extras, errors=errors, limit=3 %}
      {%endif%}
      {% endblock %}
-
-
-{% block content_action %}
-
-    
-   {% link_for _('Create Create'), controller='package', action='new', class_='btn btn-primary', icon='plus-square'%} 
-   {% link_for _('Create Create'), controller='ckanext.dictionary.controller:DDController', action='new_data_dictionary_dos', class_='btn btn-primary', icon='plus-square'%} 
-
-
-    {#% link_for _('Manage'), controller='package', action='edit', id=selected_pkg, class_='btn', icon='wrench' %#}
-    {#% link_for _('Manage'), controller='package', action='edit', id=target, class_='btn', icon='wrench' %#}
-    {#% link_for _('Manage'), controller='package', action='edit', id='prueba', class_='btn', icon='wrench' %#}
-
-{% endblock %}
-
-
-
-
 
 
     {% endblock %}
