@@ -25,7 +25,7 @@ import ckan.plugins as p
 import ckan.lib.render
 
 from ckan.common import config
-from ckan.controllers import package
+import ckan.controllers.package as pkgcontroller
 #import ckan.controllers.package as pkgcontroller
 
 #render = ckan.lib.base.render
@@ -33,7 +33,9 @@ from ckan.controllers import package
 
 log = logging.getLogger(__name__)
 
-pkggg = package.PackageController
+pkggg = pkgcontroller.PackageController()
+
+
 render = base.render
 abort = base.abort
 redirect = h.redirect_to
