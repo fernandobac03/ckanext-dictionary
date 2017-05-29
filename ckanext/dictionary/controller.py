@@ -528,7 +528,8 @@ class DDController(BaseController):
                 c.form_action = h.url_for(controller='package', action='new')
                 c.form_style = 'new'
 
-	
+		#cleaning main dataset parameters 		
+		data['id']=""
               	data['name']=""
 		data['title']=""
 		data['url']=""
