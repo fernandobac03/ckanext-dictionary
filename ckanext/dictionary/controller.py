@@ -25,8 +25,8 @@ import ckan.plugins as p
 import ckan.lib.render
 
 from ckan.common import config
-#from ckan.controllers.package import PackageController
-import ckan.controllers.package as pkgcontroller
+from ckan.controllers.package import package_controller
+#import ckan.controllers.package as pkgcontroller
 
 #render = ckan.lib.base.render
 #from home import CACHE_PARAMETERS
@@ -528,8 +528,7 @@ class DDController(BaseController):
 	
               
 
- 		return pkgcontroller.new(data=data, errors=None,
-                            error_summary=None)
+ 		return package_controller.new(data=data, errors=None, error_summary=None)
                 
 		#redirect(h.url_for(controller="package", action="new", group ='09555d36-8aa9-40a2-b214-27c22686449d' ))
 		#redirect(h.url_for(controller="package", action="new", data=data ))
