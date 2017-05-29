@@ -25,7 +25,7 @@ import ckan.plugins as p
 import ckan.lib.render
 
 from ckan.common import config
-from ckan.controllers.package import package_controller
+from ckan.controllers import package
 #import ckan.controllers.package as pkgcontroller
 
 #render = ckan.lib.base.render
@@ -33,6 +33,7 @@ from ckan.controllers.package import package_controller
 
 log = logging.getLogger(__name__)
 
+pkggg = package.new
 render = base.render
 abort = base.abort
 redirect = h.redirect_to
@@ -528,7 +529,7 @@ class DDController(BaseController):
 	
               
 
- 		return package_controller.new(data=data, errors=None, error_summary=None)
+ 		return pkggg(data=data, errors=None, error_summary=None)
                 
 		#redirect(h.url_for(controller="package", action="new", group ='09555d36-8aa9-40a2-b214-27c22686449d' ))
 		#redirect(h.url_for(controller="package", action="new", data=data ))
