@@ -531,10 +531,10 @@ class DDController(BaseController):
 	
               
 
- 		return pkggg.new(data=data, errors=None, error_summary=None)
+ 		#return pkggg.new(data=data, errors=None, error_summary=None)
                 
 		#redirect(h.url_for(controller="package", action="new", group ='09555d36-8aa9-40a2-b214-27c22686449d' ))
-		#redirect(h.url_for(controller="package", action="new", data=data ))
+		redirect(h.url_for(controller="package", action="new", data=data ))
 		
 
 
