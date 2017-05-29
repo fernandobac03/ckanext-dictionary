@@ -135,7 +135,7 @@
 {% endcall %}
 -->
 
-  <select id="field-packages" name="packages" data-module="autocomplete">
+  <select id="selecting_schemas" name="selecting_schemas" data-module="autocomplete">
 <!--          {% if h.check_config_permission('create_unowned_dataset') %}
              <option value="" {% if not selected_org and data.id %} selected="selected" {% endif %}>{{ _('No organization') }}</option>
           {% endif %} -->
@@ -143,21 +143,18 @@
             {# get out first org from users list only if there is not an existing org #}
             {#% set selected_org = (existing_org and existing_org == organization.id) or (not existing_org and not data.id and organization.id == organizations_available[0].id) %#}
     
-	    {% set selected_pkg = package.name %} 
-            <option value="{{ package.id }}" {% if selected_pkg %} selected="selected" {% endif %}>{{ package.name }}</option>
+            <option value="{{ package.name }}">{{ package.name }}</option>
           {% endfor %}
   </select>
 
 
-  <select name='sel' id='sel'>
+  <select name='sel' id='sell'>
      {% for packaged in c.page.items %}
       {% set selected_pkg = packaged.name %} 
       <option value="{{ packaged.name }}" {% if selected_pkg %} selected="selected" {% endif %}>{{ packaged.name }}</option>
      {% endfor %}
   </select>
 
-
-  <button class="btn btn-primary" type="submit" name="save" value="go-dataset-new">{% block save_button_text %}{{ _('Probando INIA') }}{% endblock %}</button>
 
 </div>
 

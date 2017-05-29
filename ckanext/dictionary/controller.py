@@ -501,7 +501,7 @@ class DDController(BaseController):
         if request.method == 'POST':
             save_action = request.params.get('save')        
             sel = ""
-            sel = request.params.get('sel')
+            sel = request.params.get('selecting_schemas')
 
             if save_action == 'go-dataset-new':        
                 package_type = self._get_package_type(sel)
