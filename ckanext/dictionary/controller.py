@@ -25,7 +25,7 @@ import ckan.plugins as p
 import ckan.lib.render
 
 from ckan.common import config
-
+from ckan.controllers.package import PackageController
 
 #render = ckan.lib.base.render
 #from home import CACHE_PARAMETERS
@@ -521,11 +521,12 @@ class DDController(BaseController):
                 except (NotFound, NotAuthorized):
                     abort(404, _('Dataset not found'))
 		            
-                #c.form_action = h.url_for(controller='package', action='new')
-                #c.form_style = 'new'
+                c.form_action = h.url_for(controller='package', action='new')
+                c.form_style = 'new'
               
-		redirect(h.url_for(controller="package", action="new"))
-
+		#redirect(h.url_for(controller="package", action="new"))
+		return PackageController.new(data=data, errors=None,
+                            error_summary=None)
 
 
 
