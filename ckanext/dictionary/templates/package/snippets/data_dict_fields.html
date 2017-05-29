@@ -98,64 +98,19 @@
 -->
 
 
-
-
-
 <div class="module-select-db">
-<!--
-      {% block form %}
-        {% set facets = {
-          'fields': c.fields_grouped,
-          'search': c.search_facets,
-          'titles': c.facet_titles,
-          'translated_fields': c.translated_fields,
-          'remove_field': c.remove_field }
-        %}
-        {% set sorting = [
-          (_('Relevance'), 'score desc, metadata_modified desc'),
-          (_('Name Ascending'), 'title_string asc'),
-          (_('Name Descending'), 'title_string desc'),
-          (_('Last Modified'), 'metadata_modified desc'),
-          (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false) ]
-        %}
-        {% snippet 'snippets/search_form.html', form_id='dataset-search-form', type='dataset', query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, facets=facets, show_empty=request.params, error=c.query_error, fields=c.fields %}
-  
-    {% endblock %}
-     -->
-<!--
-   {% block package_search_results_list %}
-        {{ h.snippet('snippets/package_list.html', packages=c.page.items) }}
-   {% endblock %}
-
--->
-
-<!--
-{% call form.select('packages', label=_('opciones'), options=c.page.items, selected=c.selected_pkg, error=errors.image_field, is_required=false) %}
-  {{ form.info(_('Image field to use in the gallery.'), inline=True) }}
-{% endcall %}
--->
-
+<p>
+Seleccione un esquema para crear un nuevo Dataset.
+</p>
   <select id="selecting_schemas" name="selecting_schemas" data-module="autocomplete">
 <!--          {% if h.check_config_permission('create_unowned_dataset') %}
              <option value="" {% if not selected_org and data.id %} selected="selected" {% endif %}>{{ _('No organization') }}</option>
           {% endif %} -->
           {% for package in c.page.items %}
-            {# get out first org from users list only if there is not an existing org #}
-            {#% set selected_org = (existing_org and existing_org == organization.id) or (not existing_org and not data.id and organization.id == organizations_available[0].id) %#}
-    
-            <option value="{{ package.name }}">{{ package.name }}</option>
+            {# listing available datasets #}
+            	<option value="{{ package.name }}">{{ package.name }}</option>
           {% endfor %}
   </select>
-
-
-  <select name='sel' id='sell'>
-     {% for packaged in c.page.items %}
-      {% set selected_pkg = packaged.name %} 
-      <option value="{{ packaged.name }}" {% if selected_pkg %} selected="selected" {% endif %}>{{ packaged.name }}</option>
-     {% endfor %}
-  </select>
-
-
 </div>
 
     {% block data_dict_buttons %}
