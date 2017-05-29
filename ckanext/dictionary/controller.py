@@ -27,6 +27,7 @@ import ckan.lib.render
 from ckan.common import config
 from ckan.controllers.package import PackageController
 
+
 #render = ckan.lib.base.render
 #from home import CACHE_PARAMETERS
 
@@ -523,9 +524,15 @@ class DDController(BaseController):
 		            
                 c.form_action = h.url_for(controller='package', action='new')
                 c.form_style = 'new'
+
+		from ckan.controllers.packages.PackageController as pkgcontroller
               
+
+ 		return pkgcontroller.new(data=data, errors=None,
+                            error_summary=None)
+                
 		#redirect(h.url_for(controller="package", action="new", group ='09555d36-8aa9-40a2-b214-27c22686449d' ))
-		redirect(h.url_for(controller="package", action="new", data=data ))
+		#redirect(h.url_for(controller="package", action="new", data=data ))
 		
 
 
