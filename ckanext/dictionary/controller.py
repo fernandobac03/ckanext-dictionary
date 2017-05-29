@@ -26,7 +26,7 @@ import ckan.lib.render
 
 from ckan.common import config
 #from ckan.controllers.package import PackageController
-import ckan.controllers.package.PackageController as pkgcontroller
+import ckan.controllers.package as pkgcontroller
 
 #render = ckan.lib.base.render
 #from home import CACHE_PARAMETERS
