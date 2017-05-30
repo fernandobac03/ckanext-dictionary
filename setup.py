@@ -79,7 +79,7 @@ setup(
     # pip to create the appropriate form of executable for the target platform.
     entry_points='''
         [ckan.plugins]
-        predataset=ckanext.dictionary.plugin:Pre_AddDatasetPlugin
+        predataset=ckanext.pre-addataset.plugin:Pre_AddDatasetPlugin
 	[babel.extractors]
 	ckan = ckan.lib.extract:extract_ckan
     ''',

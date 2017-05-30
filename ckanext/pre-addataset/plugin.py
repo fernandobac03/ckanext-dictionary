@@ -9,17 +9,17 @@ class Pre_AddDatasetPlugin(p.SingletonPlugin):
 
     def before_map(self, map):
  	
-	map.connect('add dataset new form', '/dataset/new_form',controller='ckanext.dictionary.controller:DDController', action='schema_select')    
+	map.connect('add dataset new form', '/dataset/new_form',controller='ckanext.pre-addataset.controller:DDController', action='schema_select')    
 
-	map.connect('add dataset', '/dataset/new_dataset',controller='ckanext.dictionary.controller:DDController', action='new_dataset')          
+	map.connect('add dataset', '/dataset/new_dataset',controller='ckanext.pre-addataset.controller:DDController', action='new_dataset')          
  	
         return map
 
     def after_map(self, map):
 	
-	map.connect('add dataset new form', '/dataset/new_form',controller='ckanext.dictionary.controller:DDController', action='schema_select')       
+	map.connect('add dataset new form', '/dataset/new_form',controller='ckanext.pre-addataset.controller:DDController', action='schema_select')       
 	
-	map.connect('add dataset', '/dataset/new_dataset',controller='ckanext.dictionary.controller:DDController', action='new_dataset')   
+	map.connect('add dataset', '/dataset/new_dataset',controller='ckanext.pre-addataset.controller:DDController', action='new_dataset')   
 
         return map
 
