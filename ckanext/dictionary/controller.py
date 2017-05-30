@@ -64,29 +64,21 @@ class DDController(BaseController):
 	#print(sys.path)
 	return p.toolkit.render("base1.html")
     
-#    def _resource_form(self, package_type):
-#        # backwards compatibility with plugins not inheriting from
-#        # DefaultDatasetPlugin and not implmenting resource_form
-#        plugin = lookup_package_plugin(package_type)
-#        if hasattr(plugin, 'resource_form'):
-#            result = plugin.resource_form()
-#            if result is not None:
-#                return result
-#        return lookup_package_plugin().resource_form()
 
 
-    def _get_package_type(self, id):
-        """
-        Given the id of a package this method will return the type of the
-        package, or 'dataset' if no type is currently set
-        """
-        pkg = model.Package.get(id)
-        if pkg:
-            return pkg.type or 'dataset'
-        return None
+
+#    def _get_package_type(self, id):
+#        """
+#        Given the id of a package this method will return the type of the
+#        package, or 'dataset' if no type is currently set
+#        """
+#        pkg = model.Package.get(id)
+#        if pkg:
+#            return pkg.type or 'dataset'
+#        return None
 
 	
-    def finaldict(self, data=None, errors=None):
+    def schema_select(self, data=None, errors=None):
 
  	from ckan.lib.search import SearchError, SearchQueryError
 
@@ -104,7 +96,7 @@ class DDController(BaseController):
         c.query_error = False
         page = h.get_page_number(request.params)
 
-        limit = int(config.get('ckan.datasets_per_page', 20))
+        #limit = int(config.get('ckan.datasets_per_page', 20))
 
         # most search operations should reset the page counter:
         params_nopage = [(k, v) for k, v in request.params.items()
@@ -281,12 +273,6 @@ class DDController(BaseController):
 	c.link = str("/dataset/dictionary/new_dict/"+"prueba")
 	return render("package/new_data_dict.html",extra_vars={'package_id':variable})
 
-
- #   def redirectSecond(self, id, data=None, errors=None):
- #       return render("package/new_resource.html")
-   
-
-
 ################################################################
  
  
@@ -304,24 +290,19 @@ class DDController(BaseController):
             sel = request.params.get('selecting_schemas')
 
             if save_action == 'go-dataset-new':        
-                #package_type = self._get_package_type(sel)
                 package_type = pkggg._get_package_type(sel)
 		context = {'model': model, 'session': model.Session,
                    'user': c.user, 'auth_user_obj': c.userobj,
                    'save': 'save' in request.params}
 
-                #if context['save'] and not data:
-                #    return self._save_edit(sel, context, package_type=package_type)
+
                 try:
                     c.pkg_dict = get_action('package_show')(dict(context,
                                                          for_view=True),
                                                     {'id': sel})
                     context['for_edit'] = True
                     old_data = get_action('package_show')(context, {'id': sel})
-                    # old data is from the database and data is passed from the
-                    # user if there is a validation error. Use users data if there.
-                    #if data:
-                    #    old_data.update(data)
+                    # old data is from the database
                     data = old_data
                 except (NotFound, NotAuthorized):
                     abort(404, _('Dataset not found'))
@@ -329,7 +310,7 @@ class DDController(BaseController):
                 c.form_action = h.url_for(controller='package', action='new')
                 c.form_style = 'new'
 
-		#cleaning main dataset parameters 		
+		#cleaning main dataset parameters. These parameters will be mandatory for the user to complete		
 		data['id']=""
               	data['name']=""
 		data['title']=""
