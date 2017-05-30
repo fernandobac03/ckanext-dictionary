@@ -15,7 +15,7 @@
 
  {% block stages %}
 {#{ h.snippet('package/snippets/stages.html', stages=3) }#}
-{{h.snippet('package/snippets/stages.html', stages=['active','uncomplete','uncomplete'], pkg_name=pkg_name)}}
+{{h.snippet('package/snippets/stages.html', stages=['active','uncomplete','active'], pkg_name=pkg_name)}}
   {% endblock %}
 {#{% block stages %}
 {{h.snippet('package/snippets/stages.html', stages=['complete','complete','active'], pkg_name=pkg_name)}}

@@ -14,7 +14,7 @@ Example:
 #}
 {% set s1 = stages[0] or 'active' %}
 {% set s2 = stages[1] or 'uncomplete' %}
-{% set s3 = stages[2] or 'uncomplete' %}
+{% set s3 = stages[2] or 'active' %}
 {% if s1 != 'uncomplete' %}{% set class = 'stage-1' %}{% endif %}
 {% if s2 != 'uncomplete' %}{% set class = 'stage-2' %}{% endif %}
 {% if s3 != 'uncomplete' %}{% set class = 'stage-3' %}{% endif %}
@@ -55,25 +55,31 @@ Example:
   </li>
 -->
 
- <li class="last {{ s1 }}" style="width:33.33%">
-    {% if s1 != 'complete' %}
+ <li class="last {{ s3 }}" style="width:33.33%">
+    {% if s2 != 'complete' %}
       <span class="highlight">{{ _('Schema Selection') }}</span>
     {% else %}
+      {% if s1 == 'active' %}
+        {# stage 1 #}
         <button class="highlight" name="save" value="go-resources" type="submit">{{ _('Schema Selection') }}</button>
+      {% else %}
+        {% link_for _('Schema Selection'), controller='package', action='new', class_="highlight" %}
+      {% endif %}
     {% endif %}
 </li>
-<li class="first {{ s2 }}" style="width:33.33%">
-    {% if s2 != 'complete' %}
+
+ <li class="first {{ s1 }}" style="width:33.33%">
+    {% if s1 != 'complete' %}
       <span class="highlight">{{ _('Create dataset') }}</span>
     {% else %}
       <button class="highlight" name="save" value="go-dataset" type="submit">{{ _('Create dataset') }}</button>
     {% endif %}
   </li>
-  <li class="last {{ s3 }}" style="width:33.33%">
-    {% if s3 != 'complete' %}
+  <li class="last {{ s2 }}" style="width:33.33%">
+    {% if s2 != 'complete' %}
       <span class="highlight">{{ _('Add data') }}</span>
     {% else %}
-      {% if s2 == 'active' %}
+      {% if s1 == 'active' %}
         {# stage 1 #}
         <button class="highlight" name="save" value="go-resources" type="submit">{{ _('Add data') }}</button>
       {% else %}
