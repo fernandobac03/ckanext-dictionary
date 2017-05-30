@@ -25,7 +25,7 @@ cd ckan
 paster db init -c test-core.ini
 cd -
 
-echo "Installing ckanext-pre-addataset and its requirements..."
+echo "Installing ckanext-predataset and its requirements..."
 python setup.py develop
 pip install -r dev-requirements.txt
 
