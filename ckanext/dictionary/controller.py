@@ -266,7 +266,7 @@ class DDController(BaseController):
 
 
 
-    def new_data_dictionary_dos(self):
+    def new_dataset(self):
         if request.method == 'POST':
             save_action = request.params.get('save')        
             sel = ""
