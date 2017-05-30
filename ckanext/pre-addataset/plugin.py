@@ -1,8 +1,8 @@
 import ckan.plugins as p
 
 
-class Data_DictionaryPlugin(p.SingletonPlugin):
-    '''data dictionary plugin.'''
+class Pre_AddDatasetPlugin(p.SingletonPlugin):
+    '''Selection of a dataset prior to the creation of a new dataset with autocompleted fields'''
 
     p.implements(p.IRoutes,inherit=True)
     p.implements(p.IConfigurer)

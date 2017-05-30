@@ -10,22 +10,22 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='''ckanext-dictionary''',
+    name='''ckanext-pre-addataset''',
 
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # http://packaging.python.org/en/latest/tutorial.html#version
     version='0.0.1',
 
-    description='''A data dictionary (metadata) plugin for CKAN''',
+    description='''A pre-dataset selection to create a new dataset - plugin for CKAN''',
     long_description=long_description,
 
     # The project's main homepage.
-    url='https://github.com/cmuphillycapstone/ckanext-dictionary.git',
+    url='https://github.com/fernandobac03/ckanext-pre-addataset',
 
     # Author details
-    author='''CMU MISM capstone 2015''',
-    author_email='''cmu.edu''',
+    author='''OEG-GROUP - Facultad de Informática - UPM - 2017''',
+    author_email='''jfbaculima@delicias.dia.fi.upm.es''',
 
     # Choose your license
     license='AGPL',
@@ -36,7 +36,7 @@ setup(
         # 3 - Alpha
         # 4 - Beta
         # 5 - Production/Stable
-        'Development Status :: 4 - Beta',
+        'Development Status :: 1 - Beta',
 
         # Pick your license as you wish (should match "license" above)
         'License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)',
@@ -49,7 +49,7 @@ setup(
 
 
     # What does your project relate to?
-    keywords='''CKAN metadata data dictionary''',
+    keywords='''CKAN preselection dataset autocomplete''',
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
@@ -79,7 +79,7 @@ setup(
     # pip to create the appropriate form of executable for the target platform.
     entry_points='''
         [ckan.plugins]
-        dictionary=ckanext.dictionary.plugin:Data_DictionaryPlugin
+        predataset=ckanext.dictionary.plugin:Pre_AddDatasetPlugin
 	[babel.extractors]
 	ckan = ckan.lib.extract:extract_ckan
     ''',
