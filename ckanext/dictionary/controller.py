@@ -64,25 +64,10 @@ class DDController(BaseController):
 	#print(sys.path)
 	return p.toolkit.render("base1.html")
     
-
-
-
-#    def _get_package_type(self, id):
-#        """
-#        Given the id of a package this method will return the type of the
-#        package, or 'dataset' if no type is currently set
-#        """
-#        pkg = model.Package.get(id)
-#        if pkg:
-#            return pkg.type or 'dataset'
-#        return None
-
-	
     def schema_select(self, data=None, errors=None):
 
  	from ckan.lib.search import SearchError, SearchQueryError
-
-        package_type = 'dataset'
+        package_type = 'dataset' #only for dataset type 'dataset'
 
         try:
             context = {'model': model, 'user': c.user,
@@ -121,11 +106,8 @@ class DDController(BaseController):
         def _sort_by(fields):
             """
             Sort by the given list of fields.
-
             Each entry in the list is a 2-tuple: (fieldname, sort_order)
-
             eg - [('metadata_modified', 'desc'), ('name', 'asc')]
-
             If fields is empty, then the default ordering is used.
             """
             params = params_nosort[:]
@@ -259,19 +241,20 @@ class DDController(BaseController):
                                        package_type=package_type)
 
 #        return render(self._search_template(package_type),
-  #                    extra_vars={'dataset_type': package_type})
+#                       extra_vars={'dataset_type': package_type})
 
 
 
 
-	variable=''
+#	variable=''
 
-        if request.method== 'POST':                                           
-            print("!!!!!!!!!!!!!!!!!!1 POsted FROM EXTENSION!!!!!!!!!!!1")    
-            variable = request.params.get('sel')
+#        if request.method== 'POST':                                           
+#            print("!!!!!!!!!!!!!!!!!!1 POsted FROM EXTENSION!!!!!!!!!!!1")    
+#            variable = request.params.get('sel')
         
-	c.link = str("/dataset/dictionary/new_dict/"+"prueba")
-	return render("package/new_data_dict.html",extra_vars={'package_id':variable})
+#	c.link = str("/dataset/dictionary/new_dict/"+"prueba")
+#	return render("package/new_data_dict.html",extra_vars={'package_id':variable})
+	return render("package/new_data_dict.html")
 
 ################################################################
  
